@@ -32,8 +32,7 @@ jobQueue.process('import-job', CONCURRENCY, async (jobData) => {
       console.error(`Failed to import job from ${feedUrl}:`, err.message);
     }
   }
-
-  // Log the run
+ 
   const log = new ImportLog({
     feedUrl,
     totalFetched: jobs.length,
@@ -46,8 +45,7 @@ jobQueue.process('import-job', CONCURRENCY, async (jobData) => {
 
   console.log(`Processed ${jobs.length} jobs from ${feedUrl}: ${newJobs} new, ${updatedJobs} updated, ${failedJobs.length} failed`);
 });
-
-// Handle job failures
+ 
 jobQueue.on('failed', (job, err) => {
   console.error(`Job ${job.id} failed:`, err.message);
 });
